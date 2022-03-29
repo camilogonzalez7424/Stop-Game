@@ -2,13 +2,17 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Ventana2 {
 
+
+    @FXML
+    private AnchorPane ventana2;
+    
 	@FXML
     private Label ownNameResult;
 
@@ -38,8 +42,74 @@ public class Ventana2 {
 
     @FXML
     public void finishAction(ActionEvent event) {
-    	Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+		Stage stage = (Stage) ventana2.getScene().getWindow();
+		stage.close();
     }
+
+   //Getters And Setters 
+
+	public Label getOwnNameResult() {
+		return ownNameResult;
+	}
+
+	public void setOwnNameResult(Label ownNameResult) {
+		this.ownNameResult = ownNameResult;
+	}
+
+	public Label getOpponentNameResult() {
+		return opponentNameResult;
+	}
+
+	public void setOpponentNameResult(Label opponentNameResult) {
+		this.opponentNameResult = opponentNameResult;
+	}
+
+	public Label getOwnAnimalResult() {
+		return ownAnimalResult;
+	}
+
+	public void setOwnAnimalResult(Label ownAnimalResult) {
+		this.ownAnimalResult = ownAnimalResult;
+	}
+
+	public Label getOpponentAnimalResult() {
+		return opponentAnimalResult;
+	}
+
+	public void setOpponentAnimalResult(Label opponentAnimalResult) {
+		this.opponentAnimalResult = opponentAnimalResult;
+	}
+
+	public Label getOwnLocationResult() {
+		return ownLocationResult;
+	}
+
+	public void setOwnLocationResult(Label ownLocationResult) {
+		this.ownLocationResult = ownLocationResult;
+	}
+
+	public Label getOpponentLocationResult() {
+		return opponentLocationResult;
+	}
+
+	public void setOpponentLocationResult(Label opponentLocationResult) {
+		this.opponentLocationResult = opponentLocationResult;
+	}
+
+	public Label getOwnObjectResult() {
+		return ownObjectResult;
+	}
+
+	public void setOwnObjectResult(Label ownObjectResult) {
+		this.ownObjectResult = ownObjectResult;
+	}
+
+	public Label getOpponentObjectResult() {
+		return opponentObjectResult;
+	}
+
+	public void setOpponentObjectResult(Label opponentObjectResult) {
+		this.opponentObjectResult = opponentObjectResult;
+	}
+    
 }
