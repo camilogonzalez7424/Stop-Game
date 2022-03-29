@@ -2,17 +2,18 @@ package model;
 
 public class Answer {
 
-	public String type = "Answer";
+	public String  type = "Answer";
 	private String name;
 	private String animal;
 	private String location;
 	private String object;
+	private int totalScore;
 	
 	public Answer(String name, String animal, String location, String object){
-		this.name = name;
-		this.animal = animal;
-		this.location = location;
-		this.object = object;
+		this.name 		= name;
+		this.animal 	= animal;
+		this.location 	= location;
+		this.object 	= object;
 	}
 
 //Getters And Setters
@@ -48,5 +49,14 @@ public class Answer {
 	public void setObject(String object) {
 		this.object = object;
 	}
+
+	public int getTotalScore() {
+		return totalScore;
+	}
+
+	public void setTotalScore(int totalScore) {
+		this.totalScore = totalScore;
+	}
+	
 
 }

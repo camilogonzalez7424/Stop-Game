@@ -36,6 +36,12 @@ public class Ventana2 {
 
     @FXML
     private Label opponentObjectResult;
+    
+    @FXML
+    private Label ownTotal;
+
+	@FXML
+    private Label opponentTotal;
 
     @FXML
     private Button finishBtn;
@@ -110,6 +116,22 @@ public class Ventana2 {
 
 	public void setOpponentObjectResult(Label opponentObjectResult) {
 		this.opponentObjectResult = opponentObjectResult;
+	}
+	
+	public Label getOwnTotal() {
+		return ownTotal;
+	}
+
+	public void setOwnTotal(Label ownTotal) {
+		this.ownTotal = ownTotal;
+	}
+
+	public Label getOpponentTotal() {
+		return opponentTotal;
+	}
+
+	public void setOpponentTotal(Label opponentTotal) {
+		this.opponentTotal = opponentTotal;
 	}
     
 }

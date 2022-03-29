@@ -10,6 +10,10 @@ import action.OnMessageSend;
 
 public class GameRules {
 	
+	private final static int NO_SAME_ANSWER	= 100;
+	private final static int SAME_ANSWER 	= 50;
+	private final static int BLANK_ANSWERED	= 0;
+	
 	private Session player1;
 	private Session player2;
 	private OnMessageSend message1;
@@ -43,9 +47,46 @@ public class GameRules {
 			playGame();
 	    }
 	
-	public void Score() {
+	public void score(Answer answer1 , Answer answer2) {
 		
 		//Word igual 50, Vacio 0 y Diferente 100
+		
+		//Name
+        String[] word = score(answer1.getName(),answer2.getName());
+        
+       
+        //Animal
+        word	= score(answer1.getAnimal().toUpperCase(),answer2.getAnimal().toUpperCase());
+        
+        //Location
+        word = score(answer1.getLocation(),answer2.getLocation());
+        
+        //object
+        word	= score(answer1.getObject(),answer2.getObject());
+       
+		
+		
+	}
+	
+	private String[] score(String answer1, String answer2) {
+		String[] word = new String[2];
+        if((answer1.equalsIgnoreCase("") && answer2.equalsIgnoreCase("")) || (answer1.equalsIgnoreCase(" ") && answer2.equalsIgnoreCase(" ")) ) {
+        	word[0] = "" + BLANK_ANSWERED;
+        	word[1] = "" + BLANK_ANSWERED;
+        }else if(answer1.equalsIgnoreCase("") || answer1.equalsIgnoreCase(" ")) {
+        	word[0] = "" + BLANK_ANSWERED;
+        	word[1] = "" + NO_SAME_ANSWER;
+        }else if(answer2.equalsIgnoreCase("") || answer2.equalsIgnoreCase(" ")){
+        	word[0] = "" + NO_SAME_ANSWER;
+        	word[1] = "" + BLANK_ANSWERED;
+        }else if(answer1.equalsIgnoreCase(answer2)){
+        	word[0] = "" + SAME_ANSWER;
+        	word[1] = "" + SAME_ANSWER;
+        }else{
+        	word[0] = "" + NO_SAME_ANSWER;
+        	word[1] = "" + NO_SAME_ANSWER;
+        }
+        return word;
 		
 		
 	}

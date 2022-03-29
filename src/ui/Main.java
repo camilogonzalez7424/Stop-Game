@@ -22,6 +22,7 @@ public class Main extends Application{
 	private OnMessageListener message;
 	private Ventana1 controller1;
 	private Ventana2 controller2;
+	private Inicio inicio;
 	
 	public OnMessageListener getMessage() {
 		return message;
@@ -32,6 +33,7 @@ public class Main extends Application{
 	}
 	
 	public Main() {
+		inicio = new Inicio();
 		controller2 = new Ventana2();
 		controller1 = new Ventana1(controller2);
 	
@@ -63,6 +65,7 @@ public class Main extends Application{
 		try {
 			Socket socket = new Socket("127.0.0.1", 6000);
 
+			inicio.welcome(primaryStage);
 			bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 	

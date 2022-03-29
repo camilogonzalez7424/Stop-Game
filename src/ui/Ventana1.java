@@ -129,10 +129,12 @@ public class Ventana1 /*implements Initializable*/ {
     		alert.showAndWait();
     	}else {
     		Gson gson = new Gson();
-    		Answer ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
-    		String word = gson.toJson(ownAnswer);
-    		sendMessage(word);
+    		ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
     		
+    		String word = gson.toJson(ownAnswer);
+    		
+    		sendMessage(word);
+    		    		
     	}
     }
     
@@ -174,12 +176,10 @@ public class Ventana1 /*implements Initializable*/ {
 			try {
 				p = (Parent) loader.load();
 				Scene scene = new Scene(p);
-				Stage stage = new Stage();
-				primaryStage = stage;
 				primaryStage.setScene(scene);
 				title.setText("Letra " +letter.getLetter());
-				stage.show();
-				stage.setResizable(false);
+				primaryStage.show();
+				primaryStage.setResizable(false);
 				readMessage();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
