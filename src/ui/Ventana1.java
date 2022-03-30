@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Answer;
+import model.GameRules;
 //import model.GameRules;
 import model.Generic;
 import model.Letter;
@@ -33,6 +34,7 @@ public class Ventana1 /*implements Initializable*/ {
 	private BufferedReader br;
 	private Answer ownAnswer;
 	private Answer opponentAnswer;
+	private GameRules game;
 	
 	//public GameRules game = new GameRules();
 	
@@ -190,7 +192,7 @@ public class Ventana1 /*implements Initializable*/ {
 		break;
 		case "Answer" : Answer opponentAnswer = gson.fromJson(line, Answer.class);
 		if(ownAnswer==null) {
-			Answer ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
+			ownAnswer = new Answer(nameAnswer.getText(), animalAnswer.getText(),locationAnswer.getText(), objectAnswer.getText());
 			String word = gson.toJson(ownAnswer);
 			sendMessage(word);
 			readMessage();
@@ -205,14 +207,26 @@ public class Ventana1 /*implements Initializable*/ {
 				/*Stage stage = (Stage) anchorPane1.getScene().getWindow();
 				stage.close();*/
 				primaryStage.setScene(scene);
-				result.getOpponentAnimalResult().setText(opponentAnswer.getAnimal());
-				result.getOpponentLocationResult().setText(opponentAnswer.getLocation());
-				result.getOpponentNameResult().setText(opponentAnswer.getName());
-				result.getOpponentObjectResult().setText(opponentAnswer.getObject());
-				result.getOwnAnimalResult().setText(ownAnswer.getAnimal());
-				result.getOwnLocationResult().setText(ownAnswer.getLocation());
-				result.getOwnNameResult().setText(ownAnswer.getName());
-				result.getOwnObjectResult().setText(ownAnswer.getObject());
+				result.getOpponentAnimalResult().setText(opponentAnswer.getAnimal()+"("+opponentAnswer.getAnimalScore()+")");
+				result.getOpponentLocationResult().setText(opponentAnswer.getLocation()+"("+opponentAnswer.getLocationScore()+")");
+				result.getOpponentNameResult().setText(opponentAnswer.getName()+"("+opponentAnswer.getNameScore()+")");
+				result.getOpponentObjectResult().setText(opponentAnswer.getObject()+"("+opponentAnswer.getObjectScore()+")");
+				
+				game = new GameRules();
+				
+				game.score(ownAnswer,opponentAnswer);
+				
+				result.getOpponentTotal().setText(""+opponentAnswer.getTotalScore());
+				
+				result.getOwnAnimalResult().setText(ownAnswer.getAnimal()+"("+ownAnswer.getAnimalScore()+")");
+				result.getOwnLocationResult().setText(ownAnswer.getLocation()+"("+ownAnswer.getLocationScore()+")");
+				result.getOwnNameResult().setText(ownAnswer.getName()+"("+ownAnswer.getNameScore()+")");
+				result.getOwnObjectResult().setText(ownAnswer.getObject()+"("+ownAnswer.getObjectScore()+")");
+				
+				result.getOwnTotal().setText(""+ownAnswer.getTotalScore());
+
+				//result.getOwnTotal().setText("500");
+
 				primaryStage.show();
 				primaryStage.setResizable(false);
 			} catch (IOException e) {

@@ -23,7 +23,9 @@ public class GameRules {
 	private Thread ventana1;
 	private Thread ventana2;
 	
-	
+	public GameRules() {
+		
+	}
 	public GameRules(Session player1, Session player2) {
 		this.player1 	= player1;
 		this.player2	= player2;
@@ -52,39 +54,51 @@ public class GameRules {
 		//Word igual 50, Vacio 0 y Diferente 100
 		
 		//Name
-        String[] word = score(answer1.getName(),answer2.getName());
+        int[] word = score(answer1.getName(),answer2.getName());
+        answer1.setNameScore(word[0]);
+        answer2.setNameScore(word[1]);
+
         
-       
         //Animal
-        word	= score(answer1.getAnimal().toUpperCase(),answer2.getAnimal().toUpperCase());
+        word	= score(answer1.getAnimal(),answer2.getAnimal());
+        answer1.setAnimalScore(word[0]);
+        answer2.setAnimalScore(word[1]);
+
+        
         
         //Location
-        word = score(answer1.getLocation(),answer2.getLocation());
+        word	= score(answer1.getLocation(),answer2.getLocation());
+        answer1.setLocationScore(word[0]);
+        answer2.setLocationScore(word[1]);
+        
         
         //object
         word	= score(answer1.getObject(),answer2.getObject());
-       
+        answer1.setObjectScore(word[0]);
+        answer2.setObjectScore(word[1]);
 		
+        answer1.setTotalScore();
+        answer2.setTotalScore();
 		
 	}
 	
-	private String[] score(String answer1, String answer2) {
-		String[] word = new String[2];
+	private int[] score(String answer1, String answer2) {
+		int[] word = new int[2];
         if((answer1.equalsIgnoreCase("") && answer2.equalsIgnoreCase("")) || (answer1.equalsIgnoreCase(" ") && answer2.equalsIgnoreCase(" ")) ) {
-        	word[0] = "" + BLANK_ANSWERED;
-        	word[1] = "" + BLANK_ANSWERED;
+        	word[0] = BLANK_ANSWERED;
+        	word[1] = BLANK_ANSWERED;
         }else if(answer1.equalsIgnoreCase("") || answer1.equalsIgnoreCase(" ")) {
-        	word[0] = "" + BLANK_ANSWERED;
-        	word[1] = "" + NO_SAME_ANSWER;
+        	word[0] = BLANK_ANSWERED;
+        	word[1] = NO_SAME_ANSWER;
         }else if(answer2.equalsIgnoreCase("") || answer2.equalsIgnoreCase(" ")){
-        	word[0] = "" + NO_SAME_ANSWER;
-        	word[1] = "" + BLANK_ANSWERED;
+        	word[0] = NO_SAME_ANSWER;
+        	word[1] = BLANK_ANSWERED;
         }else if(answer1.equalsIgnoreCase(answer2)){
-        	word[0] = "" + SAME_ANSWER;
-        	word[1] = "" + SAME_ANSWER;
+        	word[0] = SAME_ANSWER;
+        	word[1] = SAME_ANSWER;
         }else{
-        	word[0] = "" + NO_SAME_ANSWER;
-        	word[1] = "" + NO_SAME_ANSWER;
+        	word[0] = NO_SAME_ANSWER;
+        	word[1] = NO_SAME_ANSWER;
         }
         return word;
 		
